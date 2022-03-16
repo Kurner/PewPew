@@ -76,7 +76,7 @@ function updateScreen()
     var dy = projectilY - cibleY;
     var distance = Math.sqrt(dx * dx + dy * dy);
 
-    if (distance < 15 + 35) {        
+    if (distance < (15 + 35) - 3) {        
             target();
             projectilX = 0;
             projectilY = 0;
