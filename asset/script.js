@@ -76,7 +76,7 @@ function updateScreen()
     var dy = projectilY - cibleY;
     var distance = Math.sqrt(dx * dx + dy * dy);
 
-    if (distance < (15 + 35) - 3) {        
+    if (distance < (15 + 35) - 5) {        
             target();
             projectilX = 0;
             projectilY = 0;
@@ -88,7 +88,7 @@ function updateScreen()
     c.font = "30px Arial";
     c.fillText(counter, 10, 50); 
     
-    if(counter === 2)
+    if(counter === 10)
     {
         endGame();
     }
