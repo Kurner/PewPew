@@ -1,4 +1,5 @@
 body {
+  font-family: "Josefin Sans", sans-serif;
   margin: 0;
   text-align: center;
 }
@@ -6,5 +7,65 @@ body {
 body canvas {
   margin-top: 25px;
   border: 3px solid black;
+}
+
+body .popupContainerEnd,
+body .popupEnd {
+  display: none;
+}
+
+body .popupContainerEnd {
+  top: 0;
+}
+
+body .popupContainerPlay {
+  top: 45%;
+}
+
+body .popupContainerPlay,
+body .popupContainerEnd {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 220px;
+  margin: auto;
+}
+
+body .popupContainerPlay .popupPlay,
+body .popupContainerPlay .popupEnd,
+body .popupContainerEnd .popupPlay,
+body .popupContainerEnd .popupEnd {
+  border-radius: 13px;
+  border: 2px solid black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #b9b9b9;
+  padding: 5%;
+}
+
+body .popupContainerPlay .textContent,
+body .popupContainerEnd .textContent {
+  font-weight: bold;
+}
+
+body .popupContainerPlay button,
+body .popupContainerEnd button {
+  border-radius: 5%;
 }
 /*# sourceMappingURL=style.css.map */

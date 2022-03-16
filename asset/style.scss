@@ -1,8 +1,54 @@
 body {
+  font-family: "Josefin Sans", sans-serif;
   margin: 0;
   text-align: center;
+
   canvas {
     margin-top: 25px;
     border: 3px solid black;
+  }
+
+  .popupContainerEnd,
+  .popupEnd {
+    display: none;
+  }
+
+  .popupContainerEnd {
+    top: 0;
+  }
+
+  .popupContainerPlay {
+    top: 45%;
+  }
+  .popupContainerPlay,
+  .popupContainerEnd {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
+    margin: auto;
+
+    .popupPlay,
+    .popupEnd {
+      border-radius: 13px;
+      border: 2px solid black;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      align-items: center;
+      background-color: #b9b9b9;
+      padding: 5%;
+    }
+
+    .textContent {
+      font-weight: bold;
+    }
+
+    button {
+      border-radius: 5%;
+    }
   }
 }

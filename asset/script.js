@@ -1,10 +1,13 @@
 let canvas = document.getElementById("myCanvas");
+const popupPlay = document.getElementById('popupContainerPlay');
+const popupEnd = document.getElementById('popupContainerEnd');
 
 canvas.width = 800;
 canvas.height = 600;
 
 let c = canvas.getContext("2d");
 
+let gameIsPaused = false;
 
 // Canon
 let canonWidth = 50;
@@ -24,8 +27,9 @@ let projectilY = 0;
 // Counter
 let counter = 0;
 
-run();
 
+
+// Mise à jour de la position aléatoire de la cible
 function target()
 {
     cibleX = Math.random() * canvas.width;
@@ -35,10 +39,10 @@ function target()
 window.addEventListener('keyup', (e) => {
     switch (e.key) {
         case 'ArrowLeft':
-           canonX = canonX - 25;
+           canonX = canonX - 50;
             break;
         case 'ArrowRight':
-           canonX = canonX + 25;
+           canonX = canonX + 50;
             break;
         case ' ':
             projectilX = canonX + (canonWidth / 2);
@@ -46,7 +50,6 @@ window.addEventListener('keyup', (e) => {
             break;
     }
 });
-
 
 function updateScreen()
 {
@@ -66,7 +69,7 @@ function updateScreen()
     c.arc(projectilX, projectilY, 15, 0, Math.PI * 2, false);
     c.strokeStyle = 'red';
     c.stroke();
-    projectilY-= 7;
+    projectilY-= 10;
 
     // Mise à jour de la collision
     var dx = projectilX - cibleX;
@@ -83,16 +86,72 @@ function updateScreen()
     // Mise à jour du counter
     c.fillStyle = 'grey';
     c.font = "30px Arial";
-    c.fillText(counter, 10, 50);    
+    c.fillText(counter, 10, 50); 
+    
+    if(counter === 2)
+    {
+        endGame();
+    }
 }
 
 // On ne sort pas des functions qui sont "prises" dans un callback tant qu'on ne le précise pas
 // Les valeurs de base ne sont donc pas reprise
 function run() {
     updateScreen();
-      window.requestAnimationFrame(run);
+    if (!gameIsPaused) {
+        window.requestAnimationFrame(run);
+    }
 }
 
+function newGame()
+{
+    resetGame();
+    popupPlay.style.display = "none";
+    run();
+}
+
+function resetGame()
+{
+    // Canon
+    canonWidth = 50;
+    canonHeight = 150;
+    canonX = (canvas.width / 2) - canonWidth;
+    canonY = (canvas.height) - canonHeight;
+
+    // Arc, Circles
+    cibleX;
+    cibleY;
+    target();
+
+    // Projectil
+    projectilX = 0;
+    projectilY = 0;
+
+    // Counter
+    counter = 0;
+
+    gameIsPaused = false;
+}
+
+
+function endGame()
+{   
+    popupEnd.style.display = "flex";
+    gameIsPaused = true;
+}
+
+document.getElementById("play").addEventListener("click", () => {
+
+    newGame();
+
+});
+
+document.getElementById("NG").addEventListener("click", () => {
+
+    popupEnd.style.display = "none";
+    newGame();
+
+});
 
 
 // Lignes
